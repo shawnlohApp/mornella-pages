@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# No admin areas, APIs, or private paths exist on this static site.

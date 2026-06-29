@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Security: lock the page down to its own inline styles only. No scripts, forms, frames or external fetches are permitted. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow">
   <title>Privacy Policy — Mornella</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,8 +54,8 @@
     <p>We do not collect, store, or transmit: your name or email, your location, your contacts, photos or camera data, microphone recordings, browsing history, or any sensitive personal data. The affirmations you view and save remain on your device.</p>
 
     <h2>Third-Party Services</h2>
-    <p><strong>Apple App Store:</strong> All purchases are processed by Apple under their <a href="https://www.apple.com/legal/privacy/">Privacy Policy</a>.</p>
-    <p><strong>RevenueCat:</strong> Used to manage in-app purchase entitlements. See their <a href="https://www.revenuecat.com/privacy">Privacy Policy</a>.</p>
+    <p><strong>Apple App Store:</strong> All purchases are processed by Apple under their <a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Privacy Policy</a>.</p>
+    <p><strong>RevenueCat:</strong> Used to manage in-app purchase entitlements. See their <a href="https://www.revenuecat.com/privacy" rel="noopener noreferrer">Privacy Policy</a>.</p>
 
     <h2>Children's Privacy</h2>
     <p>Mornella is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it.</p>

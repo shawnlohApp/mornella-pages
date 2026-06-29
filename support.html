@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Security: lock the page down to its own inline styles only. No scripts, forms, frames or external fetches are permitted. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index, follow">
   <title>Support — Mornella</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,7 +80,7 @@
 
     <div class="faq-item">
       <p class="q">How do I request a refund?</p>
-      <p>Refunds for App Store purchases are handled by Apple. Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> to request a refund.</p>
+      <p>Refunds for App Store purchases are handled by Apple. Visit <a href="https://reportaproblem.apple.com" rel="noopener noreferrer">reportaproblem.apple.com</a> to request a refund.</p>
     </div>
   </main>
   <footer>
