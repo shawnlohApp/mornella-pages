@@ -3,255 +3,414 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+  <!-- CSP: allow Spectral from Google Fonts; all images served from self -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <meta name="description" content="Mornella — gentle morning affirmations to start each day with calm and intention. Free on iOS and Android.">
+  <meta name="description" content="Mornella — a gentle affirmation to begin every morning. Free on iOS and Android.">
   <title>Mornella — Calm Morning Affirmations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #fdf3e9;
-      color: #3a2e26;
+      background: #faf2ea;
+      color: #2b1d12;
       line-height: 1.7;
     }
 
+    /* ── Nav ── */
+    nav {
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .nav-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      object-fit: cover;
+    }
+    .nav-name {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #2b1d12;
+      letter-spacing: -0.01em;
+    }
+
     /* ── Hero ── */
-    .hero {
-      background: linear-gradient(160deg, #fff7f0 0%, #fde7d2 45%, #f7cdb6 80%, #f0b898 100%);
-      padding: 80px 24px 72px;
+    .hero-wrap {
+      padding: 0 16px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .hero-card {
+      background: linear-gradient(160deg, #fde0c8 0%, #f6cca9 55%, #f2bf98 100%);
+      border-radius: 24px;
+      padding: 76px 32px 84px;
       text-align: center;
-      border-bottom: 1px solid rgba(201,127,83,0.12);
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
+    .hero-card::before {
       content: '';
       position: absolute;
-      top: -80px; left: 50%;
+      top: -120px;
+      left: 50%;
       transform: translateX(-50%);
-      width: 700px; height: 700px;
-      background: radial-gradient(ellipse, rgba(255,200,130,0.22) 0%, transparent 68%);
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(circle, rgba(255,244,224,0.55) 0%, rgba(255,244,224,0) 66%);
       pointer-events: none;
     }
-
-    .app-icon {
-      width: 100px; height: 100px;
-      background: linear-gradient(145deg, #fbd8bc 0%, #e8956b 100%);
-      border-radius: 24px;
-      margin: 0 auto 28px;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 36px rgba(180,90,40,0.2), 0 2px 8px rgba(180,90,40,0.12);
-      font-size: 2.6rem;
+    .hero-inner {
+      position: relative;
+      max-width: 560px;
+      margin: 0 auto;
     }
-
-    .hero h1 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(2.6rem, 7vw, 4rem);
-      font-weight: 700;
-      color: #2b1d12;
+    .hero-app-icon {
+      width: 92px;
+      height: 92px;
+      border-radius: 21px;
+      object-fit: cover;
+      margin: 0 auto 26px;
+      display: block;
+      box-shadow: 0 8px 30px rgba(140,70,20,0.22);
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(74,57,47,0.58);
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+      font-size: clamp(3.2rem, 8vw, 4.6rem);
+      font-weight: 500;
+      color: #1e1208;
+      line-height: 1.02;
       letter-spacing: -0.025em;
-      line-height: 1.1;
       margin-bottom: 18px;
     }
-
-    .hero .tagline {
-      font-size: clamp(1rem, 2.8vw, 1.2rem);
-      color: rgba(74,57,47,0.7);
-      max-width: 440px;
-      margin: 0 auto 44px;
-      font-weight: 400;
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: rgba(43,29,18,0.7);
+      max-width: 400px;
+      margin: 0 auto 38px;
+      line-height: 1.65;
     }
 
-    /* ── Badge buttons (placeholders — replace href with real store links) ── */
+    /* ── Store badges ── */
     .badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
       justify-content: center;
     }
-
     .badge {
       display: inline-flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-width: 168px;
-      background: #2b1d12;
-      color: #fdf3e9;
+      gap: 10px;
+      background: #111;
+      color: #fff;
       text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 14px;
-      line-height: 1.3;
-      box-shadow: 0 4px 18px rgba(43,29,18,0.22);
+      padding: 11px 18px;
+      border-radius: 11px;
+      min-width: 150px;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.15s;
     }
-    .badge:hover { background: #1a100a; text-decoration: none; color: #fdf3e9; }
-    .badge .store-sub { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.65; margin-bottom: 2px; }
-    .badge .store-name { font-size: 1.05rem; font-weight: 700; }
+    .badge:hover { background: #000; text-decoration: none; color: #fff; }
+    .badge-logo { flex-shrink: 0; }
+    .badge-text { display: flex; flex-direction: column; gap: 1px; text-align: left; }
+    .badge-sub  { font-size: 0.58rem; letter-spacing: 0.04em; opacity: 0.68; line-height: 1; }
+    .badge-name { font-size: 0.9rem;  font-weight: 600; line-height: 1.2; }
 
     .badge-note {
-      font-size: 0.8rem;
-      color: rgba(74,57,47,0.42);
-      margin-top: 18px;
+      font-size: 0.82rem;
+      color: rgba(74,57,47,0.5);
+      margin-top: 20px;
     }
 
     /* ── Features ── */
-    .features-wrap {
-      max-width: 900px;
+    .features-section {
+      padding: 84px 24px 88px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 72px 24px;
-    }
-
-    .features-heading {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(1.3rem, 3.5vw, 1.7rem);
-      color: #2b1d12;
       text-align: center;
-      margin-bottom: 40px;
-      font-weight: 700;
     }
-
-    .features {
+    .section-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(74,57,47,0.52);
+      margin-bottom: 14px;
+    }
+    .section-heading {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+      font-weight: 400;
+      color: #1e1208;
+      line-height: 1.22;
+      max-width: 440px;
+      margin: 0 auto 52px;
+    }
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      text-align: left;
     }
-
     .feature-card {
-      background: rgba(255,255,255,0.58);
-      border: 1px solid rgba(201,127,83,0.15);
-      border-radius: 20px;
-      padding: 32px 28px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(201,127,83,0.14);
+      border-radius: 18px;
+      padding: 30px 26px 28px;
     }
-    .feature-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .feature-icon {
+      color: #7a5244;
+      margin-bottom: 16px;
+      display: block;
+    }
     .feature-card h3 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 0.98rem;
+      font-weight: 600;
       color: #2b1d12;
       margin-bottom: 8px;
+      line-height: 1.3;
     }
     .feature-card p {
-      color: #6a5446;
-      font-size: 0.93rem;
-      line-height: 1.65;
+      font-size: 0.88rem;
+      color: rgba(74,57,47,0.7);
+      line-height: 1.68;
       margin: 0;
     }
 
     /* ── CTA ── */
-    hr.divider {
-      border: none;
-      border-top: 1px solid rgba(201,127,83,0.14);
-      margin: 0 24px;
-    }
-
-    .cta {
+    .cta-section {
+      background: linear-gradient(160deg, #fde0c8 0%, #f5c9a8 100%);
+      padding: 76px 24px 84px;
       text-align: center;
-      padding: 64px 24px 80px;
     }
-    .cta h2 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(1.5rem, 4vw, 2.1rem);
-      color: #2b1d12;
+    .cta-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 15px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 22px;
+      box-shadow: 0 6px 22px rgba(140,70,20,0.2);
+    }
+    .cta-section h2 {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400;
+      color: #1e1208;
       margin-bottom: 10px;
+      line-height: 1.15;
     }
-    .cta .sub {
-      color: rgba(74,57,47,0.62);
+    .cta-section .cta-sub {
+      color: rgba(43,29,18,0.62);
       font-size: 0.95rem;
-      margin-bottom: 36px;
+      margin: 0 auto 36px;
+      max-width: 340px;
     }
 
     /* ── Footer ── */
     footer {
-      border-top: 1px solid rgba(201,127,83,0.14);
-      padding: 32px 24px;
-      text-align: center;
-      font-size: 0.83rem;
-      color: rgba(74,57,47,0.42);
-    }
-    footer nav {
+      padding: 24px 28px;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 6px 20px;
-      justify-content: center;
-      margin-bottom: 12px;
+      gap: 12px;
+      border-top: 1px solid rgba(201,127,83,0.12);
     }
-    footer nav a { color: #c97f53; text-decoration: none; }
-    footer nav a:hover { text-decoration: underline; }
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .footer-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+    .footer-name {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: #2b1d12;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(74,57,47,0.4);
+      margin-left: 20px;
+    }
+    footer nav { display: flex; gap: 22px; padding: 0; }
+    footer nav a {
+      font-size: 0.82rem;
+      color: rgba(74,57,47,0.52);
+      text-decoration: none;
+    }
+    footer nav a:hover { color: #c97f53; }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .hero-card { padding: 56px 24px 64px; }
+      .features-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-copy { margin-left: 0; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="app-icon" aria-hidden="true">🌅</div>
-    <h1>Mornella</h1>
-    <p class="tagline">A gentle affirmation to start each morning with calm and intention.</p>
-
-    <!-- Replace the two href="#" values with your real App Store and Google Play links -->
-    <div class="badges">
-      <a class="badge" href="#" aria-label="Download Mornella on the App Store">
-        <span class="store-sub">Download on the</span>
-        <span class="store-name">App Store</span>
-      </a>
-      <a class="badge" href="#" aria-label="Get Mornella on Google Play">
-        <span class="store-sub">Get it on</span>
-        <span class="store-name">Google Play</span>
-      </a>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-brand">
+      <img src="assets/icon.png" alt="" class="nav-icon" aria-hidden="true">
+      <span class="nav-name">Mornella</span>
     </div>
-    <p class="badge-note">Free to download &middot; Mornella Pro unlocks all features</p>
-  </section>
+  </nav>
 
-  <!-- Features -->
-  <div class="features-wrap">
-    <h2 class="features-heading">A softer way to start the day</h2>
-    <div class="features">
-      <div class="feature-card">
-        <span class="feature-icon" aria-hidden="true">☀️</span>
-        <h3>A gentle daily ritual</h3>
-        <p>One short, uplifting affirmation each morning — a quiet moment of warmth before the world asks anything of you.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon" aria-hidden="true">🎵</span>
-        <h3>Ambient soundscapes</h3>
-        <p>Pair your affirmation with soft background audio — birdsong, rain, or quiet stillness — to ease into the morning.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon" aria-hidden="true">🔒</span>
-        <h3>Private by design</h3>
-        <p>No account. No login. No tracking. Your affirmations stay on your device, and we never collect personal data.</p>
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <div class="hero-card">
+      <div class="hero-inner">
+        <img src="assets/icon.png" alt="Mornella app icon" class="hero-app-icon">
+        <p class="eyebrow">Morning Affirmations</p>
+        <h1 class="hero-title">Mornella</h1>
+        <p class="hero-tagline">A gentle affirmation to begin every morning — one calm, hopeful line, and the quiet to let it land.</p>
+        <div class="badges">
+          <!-- Replace href="#" with real App Store link when live -->
+          <a class="badge" href="#" aria-label="Download on the App Store">
+            <svg class="badge-logo" width="20" height="24" viewBox="0 0 20 24" fill="white" aria-hidden="true">
+              <path d="M14.6 16.8c-.8.78-1.68.66-2.52.29-.9-.38-1.72-.4-2.66 0-1.18.5-1.8.36-2.5-.29C2.28 12.5 2.88 6.32 7.42 6.08c1.16.06 1.96.64 2.62.66 1.02-.2 2-.82 3.14-.7 1.33.15 2.33.8 2.97 2.05-2.68 1.62-2.05 4.92.41 5.82-.46 1.23-1.06 2.46-2.6 3.56v.03zm-2.8-10.83c-.12-1.82 1.36-3.33 3.06-3.47.24 2.11-1.92 3.68-3.06 3.47z"/>
+            </svg>
+            <div class="badge-text">
+              <span class="badge-sub">Download on the</span>
+              <span class="badge-name">App Store</span>
+            </div>
+          </a>
+          <!-- Replace href="#" with real Google Play link when live -->
+          <a class="badge" href="#" aria-label="Get it on Google Play">
+            <svg class="badge-logo" width="18" height="20" viewBox="0 0 18 20" aria-hidden="true">
+              <path d="M0.5 0.8 L10 10 L0.5 19.2 Z" fill="#34A853"/>
+              <path d="M0.5 0.8 L10 10 L13 6.2 L4 0.4 Z" fill="#FBBC04"/>
+              <path d="M0.5 19.2 L10 10 L13 13.8 L4 19.6 Z" fill="#EA4335"/>
+              <path d="M10 10 L13 6.2 L17 8.6 C17.8 9.1 17.8 10.9 17 11.4 L13 13.8 Z" fill="#4285F4"/>
+            </svg>
+            <div class="badge-text">
+              <span class="badge-sub">GET IT ON</span>
+              <span class="badge-name">Google Play</span>
+            </div>
+          </a>
+        </div>
+        <p class="badge-note">Free to download &middot; Mornella Pro unlocks all features</p>
       </div>
     </div>
   </div>
 
-  <hr class="divider">
+  <!-- Features -->
+  <section class="features-section" aria-labelledby="features-heading">
+    <p class="section-eyebrow">A Gentler Way to Begin</p>
+    <h2 class="section-heading" id="features-heading">Made for the first quiet minute of the day</h2>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="6.5" r="2.6"/>
+          <path d="M12 1.8v1.3M6.7 6.5H5.4M18.6 6.5h-1.3M8.3 2.8l.9.9M15.7 2.8l-.9.9"/>
+          <circle cx="12" cy="14.6" r="2.2"/>
+          <path d="M6.5 21.5a5.5 5.5 0 0 1 11 0"/>
+        </svg>
+        <h3>A daily affirmation ritual</h3>
+        <p>One thoughtful line each morning, dealt from a deck that never repeats. Tap Another when you want a second, or simply sit with the one you're given.</p>
+      </div>
+
+      <div class="feature-card">
+        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 7.5q2.25 -2.6 4.5 0t4.5 0 4.5 0 4.5 0"/>
+          <path d="M3 12q2.25 -2.6 4.5 0t4.5 0 4.5 0 4.5 0"/>
+          <path d="M3 16.5q2.25 -2.6 4.5 0t4.5 0 4.5 0 4.5 0"/>
+        </svg>
+        <h3>Ambient soundscapes</h3>
+        <p>Let a soft soundscape rise underneath — Sunrise Calm, gentle rain, distant meadow. Warm, unhurried audio to ease you into the day.</p>
+      </div>
+
+      <div class="feature-card">
+        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2.5l7 2.6v5.4c0 4.7-3 8-7 9.5-4-1.5-7-4.8-7-9.5V5.1z"/>
+          <path d="M8.8 12l2.2 2.2 4.2-4.4"/>
+        </svg>
+        <h3>Private by design</h3>
+        <p>No accounts, no tracking, no ads. Your favourites and your own written lines stay on your device. A quiet space that's only yours.</p>
+      </div>
+
+    </div>
+  </section>
 
   <!-- CTA -->
-  <section class="cta">
-    <h2>Begin your mornings differently.</h2>
-    <p class="sub">Available on iOS and Android. Free to try.</p>
+  <section class="cta-section">
+    <img src="assets/icon.png" alt="Mornella" class="cta-icon">
+    <h2>Begin tomorrow morning</h2>
+    <p class="cta-sub">Free to download. No account, no noise — just a kinder start to the day.</p>
     <div class="badges">
-      <a class="badge" href="#" aria-label="Download Mornella on the App Store">
-        <span class="store-sub">Download on the</span>
-        <span class="store-name">App Store</span>
+      <a class="badge" href="#" aria-label="Download on the App Store">
+        <svg class="badge-logo" width="20" height="24" viewBox="0 0 20 24" fill="white" aria-hidden="true">
+          <path d="M14.6 16.8c-.8.78-1.68.66-2.52.29-.9-.38-1.72-.4-2.66 0-1.18.5-1.8.36-2.5-.29C2.28 12.5 2.88 6.32 7.42 6.08c1.16.06 1.96.64 2.62.66 1.02-.2 2-.82 3.14-.7 1.33.15 2.33.8 2.97 2.05-2.68 1.62-2.05 4.92.41 5.82-.46 1.23-1.06 2.46-2.6 3.56v.03zm-2.8-10.83c-.12-1.82 1.36-3.33 3.06-3.47.24 2.11-1.92 3.68-3.06 3.47z"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-sub">Download on the</span>
+          <span class="badge-name">App Store</span>
+        </div>
       </a>
-      <a class="badge" href="#" aria-label="Get Mornella on Google Play">
-        <span class="store-sub">Get it on</span>
-        <span class="store-name">Google Play</span>
+      <a class="badge" href="#" aria-label="Get it on Google Play">
+        <svg class="badge-logo" width="18" height="20" viewBox="0 0 18 20" aria-hidden="true">
+          <path d="M0.5 0.8 L10 10 L0.5 19.2 Z" fill="#34A853"/>
+          <path d="M0.5 0.8 L10 10 L13 6.2 L4 0.4 Z" fill="#FBBC04"/>
+          <path d="M0.5 19.2 L10 10 L13 13.8 L4 19.6 Z" fill="#EA4335"/>
+          <path d="M10 10 L13 6.2 L17 8.6 C17.8 9.1 17.8 10.9 17 11.4 L13 13.8 Z" fill="#4285F4"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-sub">GET IT ON</span>
+          <span class="badge-name">Google Play</span>
+        </div>
       </a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <nav aria-label="Legal and support links">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <img src="assets/icon.png" alt="" class="footer-icon" aria-hidden="true">
+        <span class="footer-name">Mornella</span>
+      </div>
+      <span class="footer-copy">&copy; 2026 Rec&amp;Flow</span>
+    </div>
+    <nav aria-label="Legal and support">
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms of Use</a>
       <a href="support.html">Support</a>
     </nav>
-    &copy; 2026 Shawn Loh / Rec&amp;Flow &mdash; Mornella
   </footer>
 
 </body>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-label="Daily affirmation ritual">
+  <!-- sunrise -->
+  <circle cx="12" cy="6.5" r="2.6"/>
+  <path d="M12 1.8v1.3M6.7 6.5H5.4M18.6 6.5h-1.3M8.3 2.8l.9.9M15.7 2.8l-.9.9"/>
+  <!-- figure -->
+  <circle cx="12" cy="14.6" r="2.2"/>
+  <path d="M6.5 21.5a5.5 5.5 0 0 1 11 0"/>
+</svg>
