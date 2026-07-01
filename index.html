@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- CSP: allow Spectral from Google Fonts; all images served from self -->
+  <!-- CSP: allow Spectral from Google Fonts; images served from self -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
   <meta name="description" content="Mornella — a gentle affirmation to begin every morning. Free on iOS and Android.">
   <title>Mornella — Calm Morning Affirmations</title>
+  <link rel="icon" type="image/png" href="assets/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -23,257 +24,229 @@
     }
 
     /* ── Nav ── */
-    nav {
+    nav.site-nav {
       padding: 18px 28px;
       display: flex;
       align-items: center;
     }
-    .nav-brand {
+    .nav-brand { display: flex; align-items: center; gap: 9px; }
+    .nav-icon { width: 28px; height: 28px; border-radius: 7px; object-fit: cover; }
+    .nav-name { font-size: 0.92rem; font-weight: 500; color: #2b1d12; letter-spacing: -0.01em; }
+
+    /* ── Phone mockup (built in CSS) ── */
+    .phone {
+      width: 240px;
+      aspect-ratio: 1000 / 2050;
+      background: #17100a;
+      border-radius: 40px;
+      padding: 9px;
+      position: relative;
+      box-shadow: 0 26px 70px rgba(120,60,20,0.20), 0 6px 18px rgba(120,60,20,0.12);
+      flex-shrink: 0;
+    }
+    .phone .notch {
+      position: absolute;
+      top: 20px; left: 50%; transform: translateX(-50%);
+      width: 84px; height: 20px;
+      background: #17100a;
+      border-radius: 12px;
+      z-index: 4;
+    }
+    .phone-screen {
+      width: 100%; height: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
       display: flex;
-      align-items: center;
-      gap: 9px;
+      flex-direction: column;
+      padding: 26px 20px 20px;
     }
-    .nav-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      object-fit: cover;
+    /* screen gradients */
+    .scr-morning {
+      background:
+        radial-gradient(120% 90% at 80% 30%, rgba(244,150,170,0.55) 0%, rgba(244,150,170,0) 55%),
+        linear-gradient(165deg, #fbe3c6 0%, #f7d3bd 45%, #f5cbb0 62%, #f8dc95 100%);
     }
-    .nav-name {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: #2b1d12;
-      letter-spacing: -0.01em;
+    .scr-lavender {
+      background:
+        radial-gradient(110% 80% at 20% 85%, rgba(244,190,200,0.45) 0%, rgba(244,190,200,0) 60%),
+        linear-gradient(165deg, #dfe1f4 0%, #e6ddf1 45%, #d7e5f2 100%);
+    }
+    .scr-meadow {
+      background:
+        radial-gradient(110% 80% at 80% 20%, rgba(230,215,150,0.45) 0%, rgba(230,215,150,0) 60%),
+        linear-gradient(165deg, #e6ebd2 0%, #eae4d3 45%, #d6e7d2 100%);
     }
 
-    /* ── Hero ── */
-    .hero-wrap {
-      padding: 0 16px;
-      max-width: 1080px;
-      margin: 0 auto;
+    .scr-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .greeting-label { font-size: 8px; letter-spacing: 0.13em; font-weight: 700; color: rgba(60,42,32,0.55); }
+    .greeting-date { font-size: 11px; color: rgba(60,42,32,0.72); margin-top: 3px; }
+    .scr-iconbtn {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      display: flex; align-items: center; justify-content: center;
     }
+
+    .scr-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .affirm-dash { width: 26px; height: 2px; background: rgba(60,42,32,0.3); margin-bottom: 16px; border-radius: 2px; }
+    .affirm-text {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.38;
+      text-align: center;
+      color: #2b1d12;
+      font-weight: 400;
+    }
+    .affirm-author {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 11px;
+      color: rgba(60,42,32,0.55);
+      margin-top: 14px;
+    }
+
+    .scr-bottom { display: flex; align-items: center; justify-content: center; gap: 9px; }
+    .scr-round {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scr-pill {
+      background: #2b1d12; color: #fff;
+      border-radius: 20px;
+      padding: 9px 16px;
+      font-size: 12px; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .scr-watermark {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      font-size: 9px; font-weight: 600; color: rgba(60,42,32,0.5);
+      letter-spacing: 0.02em;
+    }
+    .scr-watermark img { width: 11px; height: 11px; border-radius: 3px; }
+
+    /* ── Hero ── */
+    .hero-wrap { padding: 0 16px; max-width: 1080px; margin: 0 auto; }
     .hero-card {
       background: linear-gradient(160deg, #fde0c8 0%, #f6cca9 55%, #f2bf98 100%);
       border-radius: 24px;
-      padding: 76px 32px 84px;
-      text-align: center;
+      padding: 60px 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
       position: relative;
       overflow: hidden;
     }
     .hero-card::before {
       content: '';
       position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 720px;
-      height: 720px;
-      background: radial-gradient(circle, rgba(255,244,224,0.55) 0%, rgba(255,244,224,0) 66%);
+      top: -140px; left: -60px;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(255,244,224,0.5) 0%, rgba(255,244,224,0) 66%);
       pointer-events: none;
     }
-    .hero-inner {
-      position: relative;
-      max-width: 560px;
-      margin: 0 auto;
-    }
+    .hero-left { position: relative; max-width: 420px; }
     .hero-app-icon {
-      width: 92px;
-      height: 92px;
-      border-radius: 21px;
-      object-fit: cover;
-      margin: 0 auto 26px;
-      display: block;
-      box-shadow: 0 8px 30px rgba(140,70,20,0.22);
+      width: 72px; height: 72px; border-radius: 17px; object-fit: cover;
+      margin-bottom: 22px; display: block;
+      box-shadow: 0 6px 22px rgba(140,70,20,0.2);
     }
     .eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(74,57,47,0.58);
-      margin-bottom: 12px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(74,57,47,0.58); margin-bottom: 12px;
     }
     .hero-title {
-      font-family: 'Spectral', Georgia, 'Times New Roman', serif;
-      font-size: clamp(3.2rem, 8vw, 4.6rem);
-      font-weight: 500;
-      color: #1e1208;
-      line-height: 1.02;
-      letter-spacing: -0.025em;
-      margin-bottom: 18px;
+      font-family: 'Spectral', Georgia, serif;
+      font-size: clamp(3rem, 6vw, 4.2rem);
+      font-weight: 500; color: #1e1208;
+      line-height: 1.03; letter-spacing: -0.025em; margin-bottom: 18px;
     }
     .hero-tagline {
-      font-size: 1.05rem;
-      color: rgba(43,29,18,0.7);
-      max-width: 400px;
-      margin: 0 auto 38px;
-      line-height: 1.65;
+      font-size: 1.05rem; color: rgba(43,29,18,0.7);
+      max-width: 380px; margin-bottom: 34px; line-height: 1.65;
     }
+    .hero-right { display: flex; justify-content: center; align-items: center; position: relative; }
 
     /* ── Store badges ── */
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-    }
+    .badges { display: flex; flex-wrap: wrap; gap: 12px; }
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #111;
-      color: #fff;
-      text-decoration: none;
-      padding: 11px 18px;
-      border-radius: 11px;
-      min-width: 150px;
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: background 0.15s;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #111; color: #fff; text-decoration: none;
+      padding: 11px 18px; border-radius: 11px; min-width: 150px;
+      border: 1px solid rgba(255,255,255,0.07); transition: background 0.15s;
     }
     .badge:hover { background: #000; text-decoration: none; color: #fff; }
     .badge-logo { flex-shrink: 0; }
     .badge-text { display: flex; flex-direction: column; gap: 1px; text-align: left; }
     .badge-sub  { font-size: 0.58rem; letter-spacing: 0.04em; opacity: 0.68; line-height: 1; }
-    .badge-name { font-size: 0.9rem;  font-weight: 600; line-height: 1.2; }
-
-    .badge-note {
-      font-size: 0.82rem;
-      color: rgba(74,57,47,0.5);
-      margin-top: 20px;
-    }
+    .badge-name { font-size: 0.9rem; font-weight: 600; line-height: 1.2; }
+    .badge-note { font-size: 0.82rem; color: rgba(74,57,47,0.5); margin-top: 20px; }
 
     /* ── Features ── */
-    .features-section {
-      padding: 84px 24px 88px;
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .features-section { padding: 84px 24px 76px; max-width: 1000px; margin: 0 auto; text-align: center; }
     .section-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(74,57,47,0.52);
-      margin-bottom: 14px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(74,57,47,0.52); margin-bottom: 14px;
     }
     .section-heading {
       font-family: 'Spectral', Georgia, serif;
       font-size: clamp(1.7rem, 3.5vw, 2.3rem);
-      font-weight: 400;
-      color: #1e1208;
-      line-height: 1.22;
-      max-width: 440px;
-      margin: 0 auto 52px;
+      font-weight: 400; color: #1e1208; line-height: 1.22;
+      max-width: 440px; margin: 0 auto 52px;
     }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      text-align: left;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; text-align: left; }
     .feature-card {
       background: rgba(255,255,255,0.72);
       border: 1px solid rgba(201,127,83,0.14);
-      border-radius: 18px;
-      padding: 30px 26px 28px;
+      border-radius: 18px; padding: 30px 26px 28px;
     }
-    .feature-icon {
-      color: #7a5244;
-      margin-bottom: 16px;
-      display: block;
-    }
-    .feature-card h3 {
-      font-size: 0.98rem;
-      font-weight: 600;
-      color: #2b1d12;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-    .feature-card p {
-      font-size: 0.88rem;
-      color: rgba(74,57,47,0.7);
-      line-height: 1.68;
-      margin: 0;
-    }
+    .feature-icon { color: #7a5244; margin-bottom: 16px; display: block; }
+    .feature-card h3 { font-size: 0.98rem; font-weight: 600; color: #2b1d12; margin-bottom: 8px; line-height: 1.3; }
+    .feature-card p { font-size: 0.88rem; color: rgba(74,57,47,0.7); line-height: 1.68; margin: 0; }
+
+    /* ── Showcase ── */
+    .showcase-section { padding: 8px 24px 88px; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .showcase-sub { font-size: 0.9rem; color: rgba(74,57,47,0.52); margin-top: -34px; margin-bottom: 52px; }
+    .phones-row { display: flex; gap: 40px; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+    .phone-figure { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .phone-caption { font-size: 0.85rem; color: rgba(74,57,47,0.6); }
 
     /* ── CTA ── */
-    .cta-section {
-      background: linear-gradient(160deg, #fde0c8 0%, #f5c9a8 100%);
-      padding: 76px 24px 84px;
-      text-align: center;
-    }
+    .cta-section { background: linear-gradient(160deg, #fde0c8 0%, #f5c9a8 100%); padding: 76px 24px 84px; text-align: center; }
     .cta-icon {
-      width: 62px;
-      height: 62px;
-      border-radius: 15px;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto 22px;
-      box-shadow: 0 6px 22px rgba(140,70,20,0.2);
+      width: 62px; height: 62px; border-radius: 15px; object-fit: cover;
+      display: block; margin: 0 auto 22px; box-shadow: 0 6px 22px rgba(140,70,20,0.2);
     }
     .cta-section h2 {
       font-family: 'Spectral', Georgia, serif;
       font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 400;
-      color: #1e1208;
-      margin-bottom: 10px;
-      line-height: 1.15;
+      font-weight: 400; color: #1e1208; margin-bottom: 10px; line-height: 1.15;
     }
-    .cta-section .cta-sub {
-      color: rgba(43,29,18,0.62);
-      font-size: 0.95rem;
-      margin: 0 auto 36px;
-      max-width: 340px;
-    }
+    .cta-section .cta-sub { color: rgba(43,29,18,0.62); font-size: 0.95rem; margin: 0 auto 36px; max-width: 340px; }
+    .cta-section .badges { justify-content: center; }
 
     /* ── Footer ── */
     footer {
-      padding: 24px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      border-top: 1px solid rgba(201,127,83,0.12);
+      padding: 24px 28px; display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; border-top: 1px solid rgba(201,127,83,0.12);
     }
-    .footer-left {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .footer-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 5px;
-      object-fit: cover;
-    }
-    .footer-name {
-      font-size: 0.83rem;
-      font-weight: 500;
-      color: #2b1d12;
-    }
-    .footer-copy {
-      font-size: 0.78rem;
-      color: rgba(74,57,47,0.4);
-      margin-left: 20px;
-    }
+    .footer-left { display: flex; align-items: center; gap: 6px; }
+    .footer-brand { display: flex; align-items: center; gap: 7px; }
+    .footer-icon { width: 22px; height: 22px; border-radius: 5px; object-fit: cover; }
+    .footer-name { font-size: 0.83rem; font-weight: 500; color: #2b1d12; }
+    .footer-copy { font-size: 0.78rem; color: rgba(74,57,47,0.4); margin-left: 20px; }
     footer nav { display: flex; gap: 22px; padding: 0; }
-    footer nav a {
-      font-size: 0.82rem;
-      color: rgba(74,57,47,0.52);
-      text-decoration: none;
-    }
+    footer nav a { font-size: 0.82rem; color: rgba(74,57,47,0.52); text-decoration: none; }
     footer nav a:hover { color: #c97f53; }
 
     /* ── Responsive ── */
-    @media (max-width: 680px) {
-      .hero-card { padding: 56px 24px 64px; }
+    @media (max-width: 760px) {
+      .hero-card { grid-template-columns: 1fr; text-align: center; padding: 48px 28px; gap: 40px; }
+      .hero-left { max-width: none; margin: 0 auto; }
+      .hero-app-icon { margin-left: auto; margin-right: auto; }
+      .hero-tagline { max-width: none; margin-left: auto; margin-right: auto; }
+      .badges { justify-content: center; }
       .features-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; }
       .footer-copy { margin-left: 0; }
@@ -283,7 +256,7 @@
 <body>
 
   <!-- Nav -->
-  <nav>
+  <nav class="site-nav">
     <div class="nav-brand">
       <img src="assets/icon.png" alt="" class="nav-icon" aria-hidden="true">
       <span class="nav-name">Mornella</span>
@@ -293,7 +266,7 @@
   <!-- Hero -->
   <div class="hero-wrap">
     <div class="hero-card">
-      <div class="hero-inner">
+      <div class="hero-left">
         <img src="assets/icon.png" alt="Mornella app icon" class="hero-app-icon">
         <p class="eyebrow">Morning Affirmations</p>
         <h1 class="hero-title">Mornella</h1>
@@ -324,6 +297,49 @@
           </a>
         </div>
         <p class="badge-note">Free to download &middot; Mornella Pro unlocks all features</p>
+      </div>
+
+      <div class="hero-right">
+        <!-- Home screen phone -->
+        <div class="phone" role="img" aria-label="Mornella app showing a morning affirmation: You are exactly where you need to be.">
+          <div class="notch"></div>
+          <div class="phone-screen scr-morning">
+            <div class="scr-top">
+              <div>
+                <div class="greeting-label">GOOD MORNING</div>
+                <div class="greeting-date">Monday, June 15</div>
+              </div>
+              <div class="scr-iconbtn" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5a4436" stroke-width="2" stroke-linecap="round">
+                  <line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/>
+                  <circle cx="9" cy="8" r="2.4" fill="#f6d0c0"/><circle cx="15" cy="16" r="2.4" fill="#f6d0c0"/>
+                </svg>
+              </div>
+            </div>
+            <div class="scr-body">
+              <div class="affirm-dash"></div>
+              <p class="affirm-text">You are exactly where you need to be.</p>
+            </div>
+            <div class="scr-bottom">
+              <div class="scr-round" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5a4436" stroke-width="1.8">
+                  <path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.5 12 20 12 20z"/>
+                </svg>
+              </div>
+              <div class="scr-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 17.8 6.7 19.5l1.1-6L3.4 9.3l6-.8z"/>
+                </svg>
+                Another
+              </div>
+              <div class="scr-round" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5a4436" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.5 21a1.5 1.5 0 0 1-3 0"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -363,6 +379,90 @@
         <h3>Private by design</h3>
         <p>No accounts, no tracking, no ads. Your favourites and your own written lines stay on your device. A quiet space that's only yours.</p>
       </div>
+
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section class="showcase-section" aria-labelledby="showcase-heading">
+    <h2 class="section-heading" id="showcase-heading">A calm you can see</h2>
+    <p class="showcase-sub">Soft gradients, generous space, and a single line at a time.</p>
+    <div class="phones-row">
+
+      <!-- Morning line -->
+      <figure class="phone-figure">
+        <div class="phone" role="img" aria-label="Morning affirmation: You are exactly where you need to be.">
+          <div class="notch"></div>
+          <div class="phone-screen scr-morning">
+            <div class="scr-top">
+              <div>
+                <div class="greeting-label">GOOD MORNING</div>
+                <div class="greeting-date">Monday, June 15</div>
+              </div>
+              <div class="scr-iconbtn" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5a4436" stroke-width="2" stroke-linecap="round">
+                  <line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/>
+                  <circle cx="9" cy="8" r="2.4" fill="#f6d0c0"/><circle cx="15" cy="16" r="2.4" fill="#f6d0c0"/>
+                </svg>
+              </div>
+            </div>
+            <div class="scr-body">
+              <div class="affirm-dash"></div>
+              <p class="affirm-text">You are exactly where you need to be.</p>
+            </div>
+            <div class="scr-bottom">
+              <div class="scr-round" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5a4436" stroke-width="1.8">
+                  <path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.5 12 20 12 20z"/>
+                </svg>
+              </div>
+              <div class="scr-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 17.8 6.7 19.5l1.1-6L3.4 9.3l6-.8z"/>
+                </svg>
+                Another
+              </div>
+              <div class="scr-round" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5a4436" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.5 21a1.5 1.5 0 0 1-3 0"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="phone-caption">Your morning line</figcaption>
+      </figure>
+
+      <!-- Different motivations -->
+      <figure class="phone-figure">
+        <div class="phone" role="img" aria-label="Affirmation: Small steps still move you forward.">
+          <div class="notch"></div>
+          <div class="phone-screen scr-lavender">
+            <div class="scr-body">
+              <div class="affirm-dash"></div>
+              <p class="affirm-text">Small steps still move you forward.</p>
+            </div>
+          </div>
+        </div>
+        <figcaption class="phone-caption">Different motivations daily</figcaption>
+      </figure>
+
+      <!-- Share as art -->
+      <figure class="phone-figure">
+        <div class="phone" role="img" aria-label="Quote: Nature does not hurry, yet everything is accomplished. Lao Tzu.">
+          <div class="notch"></div>
+          <div class="phone-screen scr-meadow">
+            <div class="scr-body">
+              <p class="affirm-text">Nature does not hurry, yet everything is accomplished.</p>
+              <p class="affirm-author">— Lao Tzu</p>
+            </div>
+            <div class="scr-watermark">
+              <img src="assets/icon.png" alt="" aria-hidden="true"> Mornella
+            </div>
+          </div>
+        </div>
+        <figcaption class="phone-caption">Share it as art</figcaption>
+      </figure>
 
     </div>
   </section>
